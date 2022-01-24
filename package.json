@@ -4,18 +4,23 @@
   "description": "",
   "main": "./out/extension",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "eslint": "^8.7.0",
-    "typescript": "^4.5.5"
-  },
-  "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -b",
     "watch": "tsc -b -w",
     "lint": "eslint ./src --ext .ts,.tsx"
-  }
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/vscode": "^1.63.1",
+    "eslint": "^8.7.0",
+    "typescript": "^4.5.5",
+    "vscode-languageclient": "^7.0.0"
+  },
+  "engines": {
+    "vscode": "^1.22.0"
+  },
+  "activationEvents": [
+    "onLanguage:plaintext"
+  ]
 }
