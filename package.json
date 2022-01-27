@@ -22,5 +22,25 @@
   },
   "activationEvents": [
     "onLanguage:plaintext"
-  ]
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "DavidLS.maxNumberOfProblems": {
+            "type": "number",
+            "default": 100
+        },
+        "DavidLS.trace.server": {
+            "type": "string",
+            "enum": [
+                "off",
+                "messages",
+                "verbose"
+            ],
+            "default": "verbose"
+        }
+      }
+    }
+  }
 }

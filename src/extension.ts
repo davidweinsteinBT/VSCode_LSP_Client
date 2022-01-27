@@ -1,22 +1,18 @@
-import { ExtensionContext } from 'vscode';
+import { ExtensionContext, workspace } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
 
+    const serverConfig = {
+        command: "dotnet",
+        args: ["C:\\repos\\LSP\\LSP_Server\\LSP_Server\\LSP_Server\\bin\\Debug\\net5.0\\LSP_Server.dll"],
+        transport: TransportKind.pipe
+    }
     const serverOptions: ServerOptions = {
-        run: {
-            // TODO: Implement Sever 
-            module: "",
-            transport: TransportKind.ipc
-        },
-        debug: {
-            // TODO: Implement Sever 
-            module: "",
-            transport: TransportKind.ipc
-        },
-
+        run: serverConfig,
+        debug: serverConfig
     };
 
     const clientOptions: LanguageClientOptions = {
@@ -25,7 +21,10 @@ export function activate(context: ExtensionContext) {
                 scheme: 'file',
                 language: 'plaintext'
             }
-        ]
+        ],
+        synchronize: {
+           fileEvents: workspace.createFileSystemWatcher("*")
+        }
     };
 
     client = new LanguageClient(
